@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Order Confirmation{% endblock %}
+
+{% block content %}
+<h2>Order Confirmation</h2>
+
+{% if order %}
+<div class="success">
+    <h3>Your order has been placed successfully!</h3>
+</div>
+
+<table>
+    <tr>
+        <th>Order ID</th>
+        <td>{{ order.id }}</td>
+    </tr>
+    <tr>
+        <th>Customer Name</th>
+        <td>{{ order.customer_name }}</td>
+    </tr>
+    <tr>
+        <th>Product Name</th>
+        <td>{{ order.product_name }}</td>
+    </tr>
+    <tr>
+        <th>Quantity</th>
+        <td>{{ order.quantity }}</td>
+    </tr>
+    <tr>
+        <th>Price</th>
+        <td>&#8377;{{ "%.2f"|format(order.price) }}</td>
+    </tr>
+    <tr>
+        <th>Total Amount</th>
+        <td>&#8377;{{ "%.2f"|format(total_amount) }}</td>
+    </tr>
+</table>
+
+<p>
+    <a class="button" href="{{ url_for('home') }}">Continue Shopping</a>
+</p>
+{% else %}
+<div class="message error">{{ message }}</div>
+{% endif %}
+{% endblock %}

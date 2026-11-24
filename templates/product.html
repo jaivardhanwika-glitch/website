@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Product Details{% endblock %}
+
+{% block content %}
+<h2>Product Details</h2>
+
+{% if product %}
+<div class="card">
+    <p><strong>Product ID:</strong> {{ product.id }}</p>
+    <p><strong>Product Name:</strong> {{ product.name }}</p>
+    <p><strong>Price:</strong> &#8377;{{ "%.2f"|format(product.price) }}</p>
+    <p><strong>Description:</strong> {{ product.description }}</p>
+
+    <a class="button" href="{{ url_for('order', id=product.id) }}">
+        Order Now
+    </a>
+</div>
+{% else %}
+<div class="message error">{{ message }}</div>
+{% endif %}
+{% endblock %}
